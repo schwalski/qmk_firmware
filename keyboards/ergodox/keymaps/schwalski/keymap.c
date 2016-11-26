@@ -34,7 +34,7 @@ enum {
   L_WIN, // Windows
   L_QKDW, // QKDW
   L_CUR, // mouse and cursor
-  L_TEN, // tenkey
+  L_NUM, // numkey
   L_CONF // config
 };
 
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KC_TRNS,  C(KC_F3),
     KC_TRNS,
-    KC_RCTL,  KC_RSFT,    LT(L_TEN,KC_ENT)
+    KC_RCTL,  KC_RSFT,    LT(L_NUM,KC_ENT)
 ),
 
 
@@ -232,16 +232,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 
-/* Keymap: Cursor, TenKey Layer
+/* Keymap: Cursor, NumKey Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |  F11 |           | F12  |  F6  |  F7  |  F8  |  F9  |  F10 | ->CNF  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |        |      |  7   |  8   |  9   |  -   |  (   |           |  )   | Home | PgUp |  Up  | PgDn |      |        |
+ * |        |      |  7   |  8   |  9   |  =   |  (   |           |  )   | Home | PgUp |  Up  | PgDn |      |        |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |        |      |  4   |  5   |  6   |  +   |------|           |------| End  | Left | Down | Right|   :  |        |
+ * |        |      |  4   |  5   |  6   |  -   |------|           |------| End  | Left | Down | Right|   :  |        |
  * |--------+------+------+------+------+------|SC Tab|           | C Tab|------+------+------+------+------+--------|
- * |        |      |  1   |  2   |  3   |  =   |      |           |      |   6^ |   7& |   8* |   9( |   0) |        |
+ * |        |      |  1   |  2   |  3   |  +   |      |           |      |   6^ |   7& |   8* |   9( |   0) |        |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   |      |      |  0   |  0   |  .   |                                       |      |      |      |      |      |
  *   `----------------------------------'                                       `----------------------------------'
@@ -250,20 +250,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       |      |      |      |
  *                                 | Enter| BS   |------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      | Tab  |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-[L_TEN] = KEYMAP(
+[L_NUM] = KEYMAP(
     // left hand
-    KC_TRNS,      KC_TRNS,        KC_ESC,         KC_TAB,         KC_BSPC,        KC_EQL,           KC_TRNS,
-    KC_TRNS,      KC_TRNS,        KC_7,           KC_8,           KC_9,           KC_MINS,          KC_LPRN,
-    KC_TRNS,      KC_TRNS,        KC_4,           KC_5,           KC_6,           S(KC_EQL),
-    KC_TRNS,      KC_TRNS,        KC_1,           KC_2,           KC_3,           KC_EQL,           SC(KC_TAB),
+    KC_TRNS,      KC_TRNS,        KC_F2,          KC_F3,          KC_F4,          KC_F5,            KC_F11,
+    KC_TRNS,      KC_TRNS,        KC_7,           KC_8,           KC_9,           KC_EQL,           KC_LPRN,
+    KC_TRNS,      KC_TRNS,        KC_4,           KC_5,           KC_6,           KC_MINS,
+    KC_TRNS,      KC_TRNS,        KC_1,           KC_2,           KC_3,           S(KC_EQL),       SC(KC_TAB),
     KC_TRNS,      KC_TRNS,        KC_0,           KC_0,           KC_DOT,
 
                   KC_TRNS,        KC_TRNS,
                                   KC_TRNS,
-    KC_ENT,       KC_BSPC,        KC_TRNS,
+    KC_ENT,       KC_BSPC,        KC_TAB,
 
     //righthand
     KC_F12,       KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,           MO(L_CONF),
@@ -272,7 +272,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     C(KC_TAB),    KC_6,           KC_7,           KC_8,           KC_9,           SFT_T(KC_0),      KC_TRNS,
                                   KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,          KC_TRNS,
 
-    TG(L_TEN),    KC_TRNS,
+    TG(L_NUM),    KC_TRNS,
     KC_TRNS,
     KC_TRNS,      KC_TRNS,   KC_TRNS
 ),
@@ -361,7 +361,7 @@ void matrix_scan_user(void) {
     switch (layer) {
       // TODO: Make this relevant to the ErgoDox EZ.
         case L_MAC:
-        case L_TEN:
+        case L_NUM:
             break;
         case L_CONF:
             ergodox_right_led_3_on();
